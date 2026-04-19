@@ -21,20 +21,3 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
-
-# ── Rails (apps/sheipe_api) ───────────────────────────────────────────────────
-apps/sheipe_api/.env*
-apps/sheipe_api/log/
-apps/sheipe_api/tmp/
-apps/sheipe_api/storage/
-apps/sheipe_api/public/assets/
-apps/sheipe_api/node_modules/
-apps/sheipe_api/.bundle/
-apps/sheipe_api/vendor/bundle/
-
-# ── Flutter (apps/sheipe_app) ─────────────────────────────────────────────────
-apps/sheipe_app/.dart_tool/
-apps/sheipe_app/build/
-apps/sheipe_app/.flutter-plugins
-apps/sheipe_app/.flutter-plugins-dependencies
-apps/sheipe_app/coverage/
