@@ -30,7 +30,7 @@ sheipe/
 ## Conventions
 
 ### sheipe_api
-- All models use UUID as primary key — enable `uuid-ossp` in the initial migration and set `id: :uuid, default: "gen_random_uuid()"` on every `create_table`
+- All models use UUID as primary key — enable `pgcrypto` in the initial migration and set `id: :uuid, default: "gen_random_uuid()"` on every `create_table`
 - Never use integer auto-increment PKs — required for offline-first client-side record creation
 
 ### sheipe_app
@@ -74,3 +74,6 @@ rubocop                                           # Lint
 | `rack-attack` | Rate limiting |
 | `ar_lazy_preload` | Automatic N+1 prevention |
 | `rswag` | OpenAPI docs from RSpec request specs |
+
+## Recent Changes
+- 001-monorepo-scaffold: Rails 8 API + Flutter app scaffold; pgcrypto UUID PKs; Drift DB bootstrap; GoRouter auth guard; Repository contracts
