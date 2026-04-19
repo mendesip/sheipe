@@ -1,5 +1,6 @@
 # ── Claude Code ──────────────────────────────────────────────────────────────
-.claude/
+.claude/skills/speckit-*
+.claude/settings.local.json
 
 # ── Spec Kit (only .specify/memory/constitution.md is versioned) ─────────────
 .specify/extensions
