@@ -1,50 +1,109 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+SYNC IMPACT REPORT
+==================
+Version change: template → 1.0.0
+Ratified: 2026-04-19
+
+Principles added (all new — first ratification):
+  - I.   Offline-First (NON-NEGOTIABLE)
+  - II.  API-First
+  - III. Test-First / TDD (NON-NEGOTIABLE) — 95% minimum coverage
+  - IV.  Role-Based Authorization
+  - V.   Privacy by Default
+
+Templates updated:
+  ✅ .specify/templates/tasks-template.md
+       — Tests changed from OPTIONAL to MANDATORY (TDD principle)
+       — Test section headers updated to reflect NON-NEGOTIABLE status
+  ✅ .specify/memory/constitution.md
+       — This file (first ratification)
+  ⚠️  .specify/templates/plan-template.md
+       — Constitution Check section is a dynamic placeholder [Gates determined
+         based on constitution file] — no update needed; /speckit.plan will
+         fill it against the 5 principles at plan-creation time.
+  ⚠️  .specify/templates/spec-template.md
+       — No structural changes required; offline-first and privacy constraints
+         will surface naturally in Assumptions and Requirements sections.
+
+Deferred TODOs: none
+-->
+
+# Sheipe Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Offline-First (NON-NEGOTIABLE)
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+The core workout tracking flow — create routine, start workout, log sets —
+MUST work without internet connectivity. Rules:
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+- Drift is the primary data source on the client; the Rails API is synced in
+  background after connectivity is restored
+- All records MUST use UUID as primary key so the Flutter client can create
+  records locally before they reach the server
+- Conflicts MUST be resolved by `updated_at` (last-write-wins)
+- No feature in the workout tracking domain may depend on a live API connection
+  to function; any such dependency MUST be justified and approved as a
+  complexity exception
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### II. API-First
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+Every feature MUST ship its Rails API contract before or alongside the Flutter
+implementation. Rules:
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+- No screen is built without a corresponding API endpoint, unless the feature
+  is explicitly designated offline-only in its spec
+- API contracts MUST follow the conventions in `docs/architecture/api.md`:
+  REST, versioned under `/api/v1/`, consistent JSON error format
+- Offline-only exceptions MUST be documented in the spec's Assumptions section
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### III. Test-First / TDD (NON-NEGOTIABLE)
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+Tests MUST be written before implementation. The cycle is strictly:
+write failing test → get approval → implement → green. Minimum coverage is
+**95%** across both apps. Rules:
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- **sheipe_api**: RSpec request specs (via `rswag`) for all endpoints; model
+  and policy unit specs; integration tests for trainer-athlete data access and
+  offline sync contract
+- **sheipe_app**: Unit tests for all ViewModels (Cubits); widget tests for
+  critical flows (active workout, set logger, auth); integration tests for
+  offline sync logic
+- No feature is mergeable if coverage drops below 95%
+- The tasks template MUST reflect tests as mandatory, never optional
+
+### IV. Role-Based Authorization
+
+Every API resource MUST be protected with `action_policy`. Rules:
+
+- Trainer access to athlete data requires an active record in `TrainerAthlete`
+- Gym creation and equipment management are restricted to the `owner` role
+- Athletes can only read/write their own data unless a trainer bond is active
+- Authorization policies MUST be tested independently from controllers
+
+### V. Privacy by Default
+
+User data MUST be private unless explicitly shared. Rules:
+
+- `WorkoutPost.visibility` MUST default to `private`
+- `trainer_notes` on `Workout` is visible only to the assigned trainer and
+  their direct athlete — never to third parties
+- Social features (post, like, comment, follow) are always opt-in
+- No user data may be exposed to other users without an explicit access grant
+  modelled in the data schema
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other practices and conventions in this
+repository. Amendments require:
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+1. A documented justification for why the principle must change
+2. An assessment of which existing specs and plans are affected
+3. A migration plan for features already implemented under the old principle
+
+All specs (`spec.md`), plans (`plan.md`), and task lists (`tasks.md`) MUST
+include a **Constitution Check** section verifying compliance with all five
+principles before work begins. For runtime implementation conventions (UUID
+PKs, ViewModel pattern, dependency list), refer to `CLAUDE.md`.
+
+**Version**: 1.0.0 | **Ratified**: 2026-04-19 | **Last Amended**: 2026-04-19

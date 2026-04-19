@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Sheipe is a workout tracking and monitoring app — athletes log and track strength training sessions, trainers manage athletes and assign plans, and users can share workouts socially. It is a monorepo with:
 - **`apps/sheipe_app`**: Flutter (Dart) mobile app — single app with role-based navigation (athlete / trainer)
-- **`apps/sheipe_api`**: Ruby on Rails API-only backend with SQLite
+- **`apps/sheipe_api`**: Ruby on Rails API-only backend with PostgreSQL
 
 ## Architecture Docs
 
@@ -27,6 +27,17 @@ sheipe/
     └── architecture/  # Data model, API spec, screen map
 ```
 
+## Conventions
+
+### sheipe_api
+- All models use UUID as primary key — enable `uuid-ossp` in the initial migration and set `id: :uuid, default: "gen_random_uuid()"` on every `create_table`
+- Never use integer auto-increment PKs — required for offline-first client-side record creation
+
+### sheipe_app
+- State management via Cubit only, named `*ViewModel` (e.g. `WorkoutViewModel`) — no business logic in widgets
+- Repository pattern: every feature has an `abstract *Repository` implemented by `*RepositoryImpl` which composes a `*LocalDataSource` (Drift) and a `*RemoteDataSource` (Dio)
+- Drift is the source of truth on the client — write locally first, sync with API in background
+
 ## sheipe_app (Flutter)
 
 ```bash
@@ -42,7 +53,7 @@ flutter analyze                                   # Lint / static analysis
 
 ## sheipe_api (Rails)
 
-Rails API-only app (`rails new --api`). Auth uses the Rails 8 generator adapted for Bearer tokens. See [`docs/architecture/api.md`](docs/architecture/api.md) for endpoint reference.
+Rails API-only app (`rails new --api --database=postgresql`). Auth uses the Rails 8 generator adapted for Bearer tokens. All models use UUID as primary key (`uuid-ossp`). See [`docs/architecture/api.md`](docs/architecture/api.md) for endpoint reference.
 
 ```bash
 cd apps/sheipe_api
