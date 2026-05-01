@@ -1,0 +1,31 @@
+schema: spec-driven
+
+context: |
+  Project: Sheipe — workout tracking and monitoring app
+  Domain: athletes log strength training sessions; trainers manage athletes and assign plans; social workout sharing
+
+  Tech stack:
+    - Backend: Ruby on Rails 8 (API-only), PostgreSQL, Bearer token auth
+    - Frontend: Flutter (Dart), single app with role-based navigation (athlete / trainer)
+    - DB: PostgreSQL with pgcrypto UUID PKs
+    - Offline: Drift (Flutter local DB, offline-first)
+    - State: Cubit as ViewModel pattern
+    - Routing: GoRouter with auth guard
+
+  Conventions:
+    - Conventional Commits (feat/fix/chore/docs/refactor/test)
+    - RFC 2119 language in specs (SHALL/MUST/SHOULD/MAY)
+    - REST API — see docs/architecture/api.md
+    - All PKs are UUIDs
+
+rules:
+  proposal:
+    - Include explicit "Non-goals" section
+    - Reference affected architecture docs when relevant (data-model.md, api.md, screens.md)
+  specs:
+    - Every Requirement must have at least one Scenario
+    - Scenarios must be testable (concrete inputs and expected outputs)
+  tasks:
+    - Break tasks into chunks of max 2 hours
+    - Backend tasks before Flutter tasks when there are API dependencies
+    - Always include a test task for each feature task
