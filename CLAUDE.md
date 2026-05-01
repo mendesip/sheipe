@@ -21,59 +21,11 @@ Sheipe is a workout tracking and monitoring app — athletes log and track stren
 ```
 sheipe/
 ├── apps/
-│   ├── sheipe_app/    # Flutter app
-│   └── sheipe_api/    # Rails API backend
+│   ├── sheipe_app/    # Flutter app — see apps/sheipe_app/CLAUDE.md
+│   └── sheipe_api/    # Rails API backend — see apps/sheipe_api/CLAUDE.md
 └── docs/
     └── architecture/  # Data model, API spec, screen map
 ```
-
-## Conventions
-
-### sheipe_api
-- All models use UUID as primary key — enable `pgcrypto` in the initial migration and set `id: :uuid, default: "gen_random_uuid()"` on every `create_table`
-- Never use integer auto-increment PKs — required for offline-first client-side record creation
-
-### sheipe_app
-- State management via Cubit only, named `*ViewModel` (e.g. `WorkoutViewModel`) — no business logic in widgets
-- Repository pattern: every feature has an `abstract *Repository` implemented by `*RepositoryImpl` which composes a `*LocalDataSource` (Drift) and a `*RemoteDataSource` (Dio)
-- Drift is the source of truth on the client — write locally first, sync with API in background
-
-## sheipe_app (Flutter)
-
-```bash
-cd apps/sheipe_app
-flutter pub get                                   # Install dependencies
-flutter run                                       # Run on connected device/emulator
-flutter build apk                                 # Build Android APK
-flutter build ios                                 # Build iOS
-flutter test                                      # Run all tests
-flutter test test/path/to/file_test.dart          # Run a single test
-flutter analyze                                   # Lint / static analysis
-```
-
-## sheipe_api (Rails)
-
-Rails API-only app (`rails new --api --database=postgresql`). Auth uses the Rails 8 generator adapted for Bearer tokens. All models use UUID as primary key (`uuid-ossp`). See [`docs/architecture/api.md`](docs/architecture/api.md) for endpoint reference.
-
-```bash
-cd apps/sheipe_api
-bundle install                                    # Install dependencies
-rails db:create db:migrate db:seed                # Set up database
-rails server                                      # Start dev server (localhost:3000)
-rails test                                        # Run all tests
-rails test test/path/to/test_file.rb              # Run a single test file
-rubocop                                           # Lint
-```
-
-### Key gems
-| Gem | Purpose |
-|---|---|
-| `action_policy` | Authorization |
-| `pagy` | Pagination (offset for lists, keyset for feed) |
-| `alba` | JSON serialization |
-| `rack-attack` | Rate limiting |
-| `ar_lazy_preload` | Automatic N+1 prevention |
-| `rswag` | OpenAPI docs from RSpec request specs |
 
 ## Recent Changes
 - 001-monorepo-scaffold: Rails 8 API + Flutter app scaffold; pgcrypto UUID PKs; Drift DB bootstrap; GoRouter auth guard; Repository contracts
