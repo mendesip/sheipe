@@ -1,6 +1,8 @@
 module Api
   module V1
     class BaseController < ApplicationController
+      before_action :authenticate
+
       rescue_from StandardError,                        with: :render_internal_error
       rescue_from ActionPolicy::Unauthorized,           with: :render_forbidden
       rescue_from ActiveRecord::RecordInvalid,          with: :render_validation_failed
@@ -12,6 +14,17 @@ module Api
       end
 
       private
+
+      def authenticate
+        token = request.headers["Authorization"]&.delete_prefix("Bearer ")&.strip
+        session = token.present? ? Session.find_by(access_token: token) : nil
+
+        if session.nil? || session.access_token_expires_at < Time.current
+          render_error("unauthorized", "Unauthorized", nil, :unauthorized)
+        else
+          Current.session = session
+        end
+      end
 
       def render_not_found(_e)
         render_error("not_found", "Record not found", nil, :not_found)
