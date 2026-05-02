@@ -6,7 +6,15 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resource :me, only: [ :show ], controller: "me"
+      namespace :auth do
+        post :register, to: "registrations#create"
+        post :login, to: "sessions#create"
+        post :refresh, to: "refreshes#create"
+        delete :logout, to: "sessions#destroy"
+      end
+
+      resource :me, only: [ :show, :update ], controller: "me"
+      resources :users, only: [ :show ]
     end
   end
 
