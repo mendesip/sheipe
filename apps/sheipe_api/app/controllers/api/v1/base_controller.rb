@@ -2,6 +2,7 @@ module Api
   module V1
     class BaseController < ApplicationController
       before_action :authenticate
+      skip_before_action :authenticate, only: [ :not_found ]
 
       rescue_from StandardError,                        with: :render_internal_error
       rescue_from ActionPolicy::Unauthorized,           with: :render_forbidden

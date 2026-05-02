@@ -16,6 +16,7 @@ RSpec.describe 'Error shape contract', type: :request do
 
   describe 'unhandled exception' do
     controller_class = Class.new(Api::V1::BaseController) do
+      skip_before_action :authenticate
       def boom
         raise 'Something broke'
       end
