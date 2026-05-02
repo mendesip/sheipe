@@ -34,21 +34,21 @@ O roadmap está dividido em 8 fases. Cada fase é um incremento funcional e depl
 **Objetivo:** monorepo funcional com padrões definidos antes de qualquer feature.
 
 ### API (`apps/sheipe_api`)
-- [ ] `rails new sheipe_api --api --database=postgresql`
-- [ ] Habilitar extensão `uuid-ossp` na migration inicial — todos os modelos usarão UUID como PK
-- [ ] Adicionar gems: `rack-cors`, `pagy`, `alba`, `action_policy`, `ar_lazy_preload`, `rack-attack`, `rswag`
-- [ ] `BaseController` com `rescue_from` centralizado e formato de erro padrão
-- [ ] CORS configurado para desenvolvimento
+- [x] `rails new sheipe_api --api --database=postgresql`
+- [x] Habilitar extensão `uuid-ossp` na migration inicial — todos os modelos usarão UUID como PK
+- [x] Adicionar gems: `rack-cors`, `pagy`, `alba`, `action_policy`, `ar_lazy_preload`, `rack-attack`, `rswag`
+- [x] `BaseController` com `rescue_from` centralizado e formato de erro padrão
+- [x] CORS configurado para desenvolvimento
 
 ### Flutter (`apps/sheipe_app`)
-- [ ] `flutter create sheipe_app`
-- [ ] Adicionar dependências: `flutter_bloc`, `go_router`, `dio`, `isar`, `flutter_secure_storage`, `get_it` (DI)
-- [ ] Estrutura de pastas: `features/`, `core/` (network, storage, DI), `shared/` (widgets, theme)
-- [ ] Design system: `AppTheme`, `AppColors`, `AppTextStyles`
-- [ ] `AppRouter` (GoRouter) com rotas base e guards de autenticação
-- [ ] `ApiClient` (Dio) com interceptor de Bearer token + refresh
-- [ ] `AppDatabase` (Drift) — singleton com tabelas mapeando as entidades offline
-- [ ] Padrão de Repository: `abstract Repository` → `LocalDataSource` (Drift) + `RemoteDataSource` (Dio)
+- [x] `flutter create sheipe_app`
+- [x] Adicionar dependências: `flutter_bloc`, `go_router`, `dio`, `isar`, `flutter_secure_storage`, `get_it` (DI)
+- [x] Estrutura de pastas: `features/`, `core/` (network, storage, DI), `shared/` (widgets, theme)
+- [x] Design system: `AppTheme`, `AppColors`, `AppTextStyles`
+- [x] `AppRouter` (GoRouter) com rotas base e guards de autenticação
+- [x] `ApiClient` (Dio) com interceptor de Bearer token + refresh
+- [x] `AppDatabase` (Drift) — singleton com tabelas mapeando as entidades offline
+- [x] Padrão de Repository: `abstract Repository` → `LocalDataSource` (Drift) + `RemoteDataSource` (Dio)
 
 ---
 
@@ -57,19 +57,19 @@ O roadmap está dividido em 8 fases. Cada fase é um incremento funcional e depl
 **Objetivo:** usuário se registra, faz login e gerencia perfil.
 
 ### API
-- [ ] `rails generate authentication` → adaptar SessionsController para Bearer token
-- [ ] `POST /api/v1/auth/register` — cria User + Session, retorna token
-- [ ] `POST /api/v1/auth/login` — retorna token
-- [ ] `DELETE /api/v1/auth/logout` — invalida Session
-- [ ] `GET/PATCH /api/v1/me`
-- [ ] `GET /api/v1/users/:id` (perfil público)
+- [x] `rails generate authentication` → adaptar SessionsController para Bearer token
+- [x] `POST /api/v1/auth/register` — cria User + Session, retorna token
+- [x] `POST /api/v1/auth/login` — retorna token
+- [x] `DELETE /api/v1/auth/logout` — invalida Session
+- [x] `GET/PATCH /api/v1/me`
+- [x] `GET /api/v1/users/:id` (perfil público)
 
 ### Flutter
-- [ ] `AuthCubit` + `AuthRepository`
-- [ ] Telas: `SplashScreen`, `OnboardingScreen`, `LoginScreen`, `RegisterScreen` (2 steps: dados + role)
-- [ ] Token persistido com `flutter_secure_storage`
-- [ ] Redirect automático baseado em auth state no GoRouter
-- [ ] `EditProfileScreen`
+- [x] `AuthCubit` + `AuthRepository`
+- [x] Telas: `SplashScreen`, `OnboardingScreen`, `LoginScreen`, `RegisterScreen` (2 steps: dados + role)
+- [x] Token persistido com `flutter_secure_storage`
+- [x] Redirect automático baseado em auth state no GoRouter
+- [x] `EditProfileScreen`
 
 ---
 
