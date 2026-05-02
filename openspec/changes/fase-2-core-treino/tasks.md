@@ -138,12 +138,12 @@
 
 ## 14. Flutter — SyncService
 
-- [ ] 14.1 Write failing test `test/core/sync/sync_service_test.dart` — drains queue, marks ops synced, retries on failure
-- [ ] 14.2 Create `lib/core/sync/sync_service.dart` — singleton; `start()` subscribes to connectivity; `_processQueue()` iterates `SyncOperationsTable` where `synced_at IS NULL`; dispatches to correct remote data source by `entity_type`
-- [ ] 14.3 Run test — verify all passing
-- [ ] 14.4 Register `SyncService` in `service_locator.dart`; call `syncService.start()` in `AuthAuthenticated` state listener in `main.dart`
-- [ ] 14.5 Run `flutter analyze lib/` — verify `No issues found!`
-- [ ] 14.6 Commit: `feat(app): add SyncService for offline-first background sync`
+- [x] 14.1 Write failing test `test/core/sync/sync_service_test.dart` — drains queue, marks ops synced, retries on failure
+- [x] 14.2 Create `lib/core/sync/sync_service.dart` — singleton; `start()` subscribes to connectivity; `_processQueue()` iterates `SyncOperationsTable` where `synced_at IS NULL`; dispatches to correct remote data source by `entity_type`
+- [x] 14.3 Run test — verify all passing
+- [ ] 14.4 Register `SyncService` in `service_locator.dart`; call `syncService.start()` in `AuthAuthenticated` state listener in `main.dart` *(deferred to section 19 wiring step)*
+- [x] 14.5 Run `flutter analyze lib/` — verify `No issues found!`
+- [x] 14.6 Commit: `feat(app): add SyncService for offline-first background sync`
 
 ## 15. Flutter — Exercise ViewModels + screens
 
