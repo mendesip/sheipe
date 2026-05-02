@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_02_120400) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_02_120600) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -89,6 +89,34 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_02_120400) do
     t.index "lower((email)::text)", name: "index_users_on_lower_email", unique: true
   end
 
+  create_table "workout_exercises", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.uuid "exercise_id", null: false
+    t.text "notes"
+    t.integer "position", null: false
+    t.uuid "routine_exercise_id"
+    t.datetime "updated_at", null: false
+    t.uuid "workout_id", null: false
+    t.index ["exercise_id"], name: "index_workout_exercises_on_exercise_id"
+    t.index ["routine_exercise_id"], name: "index_workout_exercises_on_routine_exercise_id"
+    t.index ["workout_id", "position"], name: "index_workout_exercises_on_workout_id_and_position"
+    t.index ["workout_id"], name: "index_workout_exercises_on_workout_id"
+  end
+
+  create_table "workout_sets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.boolean "completed", default: false, null: false
+    t.datetime "created_at", null: false
+    t.text "notes"
+    t.integer "reps"
+    t.decimal "rpe", precision: 3, scale: 1
+    t.integer "set_number", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "weight", precision: 6, scale: 2
+    t.uuid "workout_exercise_id", null: false
+    t.index ["workout_exercise_id", "set_number"], name: "index_workout_sets_on_workout_exercise_id_and_set_number"
+    t.index ["workout_exercise_id"], name: "index_workout_sets_on_workout_exercise_id"
+  end
+
   create_table "workouts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "finished_at"
@@ -110,6 +138,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_02_120400) do
   add_foreign_key "routine_sets", "routine_exercises"
   add_foreign_key "routines", "users", column: "creator_id"
   add_foreign_key "sessions", "users"
+  add_foreign_key "workout_exercises", "exercises"
+  add_foreign_key "workout_exercises", "routine_exercises"
+  add_foreign_key "workout_exercises", "workouts"
+  add_foreign_key "workout_sets", "workout_exercises"
   add_foreign_key "workouts", "routines"
   add_foreign_key "workouts", "users"
 end

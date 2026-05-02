@@ -76,12 +76,12 @@
 
 ## 8. API — WorkoutExercise + WorkoutSet models
 
-- [ ] 8.1 Write failing model specs for `WorkoutExercise` and `WorkoutSet`
-- [ ] 8.2 Generate migration `CreateWorkoutExercises` — UUID PK, `workout_id`, `exercise_id`, `routine_exercise_id` nullable, `position`, `notes`
-- [ ] 8.3 Generate migration `CreateWorkoutSets` — UUID PK, `workout_exercise_id`, `set_number`, `weight` decimal, `reps`, `rpe` decimal, `completed` boolean default false, `notes`
-- [ ] 8.4 Create `app/models/workout_exercise.rb` and `app/models/workout_set.rb` with associations and validations (`rpe` between 1 and 10)
-- [ ] 8.5 Create factories; run `db:migrate` and model specs
-- [ ] 8.6 Commit: `feat(api): add WorkoutExercise and WorkoutSet models`
+- [x] 8.1 Write failing model specs for `WorkoutExercise` and `WorkoutSet`
+- [x] 8.2 Generate migration `CreateWorkoutExercises` — UUID PK, `workout_id`, `exercise_id`, `routine_exercise_id` nullable, `position`, `notes`
+- [x] 8.3 Generate migration `CreateWorkoutSets` — UUID PK, `workout_exercise_id`, `set_number`, `weight` decimal, `reps`, `rpe` decimal, `completed` boolean default false, `notes`
+- [x] 8.4 Create `app/models/workout_exercise.rb` and `app/models/workout_set.rb` with associations and validations (`rpe` between 1 and 10)
+- [x] 8.5 Create factories; run `db:migrate` and model specs
+- [x] 8.6 Commit: `feat(api): add WorkoutExercise and WorkoutSet models`
 
 ## 9. API — Workout endpoints
 
