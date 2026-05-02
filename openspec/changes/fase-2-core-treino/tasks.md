@@ -29,14 +29,14 @@
 
 ## 4. API — Routine model + policy
 
-- [ ] 4.1 Write failing model spec `spec/models/routine_spec.rb` (valid, blank name, creator required)
-- [ ] 4.2 Generate migration `CreateRoutines` with UUID PK, `name`, `description`, `creator_id` UUID FK → users, `is_template` boolean default false
-- [ ] 4.3 Create `app/models/routine.rb` — `belongs_to :creator, class_name: "User"`, `has_many :routine_exercises`, validates `name` presence
-- [ ] 4.4 Create `spec/factories/routines.rb` — `association :creator, factory: :user`
-- [ ] 4.5 Run `rails db:migrate` and model spec — verify passing
-- [ ] 4.6 Create `app/policies/routine_policy.rb` — full CRUD only for creator
-- [ ] 4.7 Write policy spec `spec/policies/routine_policy_spec.rb`
-- [ ] 4.8 Commit: `feat(api): add Routine model and RoutinePolicy`
+- [x] 4.1 Write failing model spec `spec/models/routine_spec.rb` (valid, blank name, creator required)
+- [x] 4.2 Generate migration `CreateRoutines` with UUID PK, `name`, `description`, `creator_id` UUID FK → users, `is_template` boolean default false
+- [x] 4.3 Create `app/models/routine.rb` — `belongs_to :creator, class_name: "User"`, `has_many :routine_exercises`, validates `name` presence
+- [x] 4.4 Create `spec/factories/routines.rb` — `association :creator, factory: :user`
+- [x] 4.5 Run `rails db:migrate` and model spec — verify passing
+- [x] 4.6 Create `app/policies/routine_policy.rb` — full CRUD only for creator
+- [x] 4.7 Write policy spec `spec/policies/routine_policy_spec.rb`
+- [x] 4.8 Commit: `feat(api): add Routine model and RoutinePolicy`
 
 ## 5. API — RoutineExercise + RoutineSet models
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_02_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_02_120100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -28,6 +28,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_02_120000) do
     t.index ["creator_id"], name: "index_exercises_on_creator_id"
     t.index ["is_system"], name: "index_exercises_on_is_system"
     t.index ["muscle_group"], name: "index_exercises_on_muscle_group"
+  end
+
+  create_table "routines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.uuid "creator_id", null: false
+    t.text "description"
+    t.boolean "is_template", default: false, null: false
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_routines_on_creator_id"
   end
 
   create_table "sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -55,5 +65,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_02_120000) do
   end
 
   add_foreign_key "exercises", "users", column: "creator_id"
+  add_foreign_key "routines", "users", column: "creator_id"
   add_foreign_key "sessions", "users"
 end
