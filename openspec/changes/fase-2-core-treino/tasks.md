@@ -109,13 +109,13 @@
 
 ## 11. Flutter — Exercise feature (data layer)
 
-- [ ] 11.1 Create `lib/features/exercise/domain/entities/exercise.dart` — plain Dart class, `fromJson`/`toJson`/`copyWith`
-- [ ] 11.2 Create `lib/features/exercise/data/local/exercise_local_data_source.dart` — `watchAll`, `upsert`, `deleteById`, `findById`
-- [ ] 11.3 Create `lib/features/exercise/data/remote/exercise_remote_data_source.dart` — `getAll`, `create`, `update`, `delete`
-- [ ] 11.4 Write failing test `test/features/exercise/data/repositories/exercise_repository_test.dart` — list returns Drift stream, create writes to Drift first then enqueues sync, delete enqueues sync
-- [ ] 11.5 Create `lib/features/exercise/data/repositories/exercise_repository.dart`
-- [ ] 11.6 Run test — verify all passing
-- [ ] 11.7 Commit: `feat(app): add Exercise data layer with offline-first repository`
+- [x] 11.1 Create `lib/features/exercise/domain/entities/exercise.dart` — plain Dart class, `fromJson`/`toJson`/`copyWith`
+- [x] 11.2 Create `lib/features/exercise/data/local/exercise_local_data_source.dart` — `watchAll`, `upsert`, `deleteById`, `findById`
+- [x] 11.3 Create `lib/features/exercise/data/remote/exercise_remote_data_source.dart` — `getAll`, `create`, `update`, `delete`
+- [x] 11.4 Write failing test `test/features/exercise/data/repositories/exercise_repository_test.dart` — list returns Drift stream, create writes to Drift first then enqueues sync, delete enqueues sync
+- [x] 11.5 Create `lib/features/exercise/data/repositories/exercise_repository.dart`
+- [x] 11.6 Run test — verify all passing
+- [x] 11.7 Commit: `feat(app): add Exercise data layer with offline-first repository`
 
 ## 12. Flutter — Routine feature (data layer)
 
