@@ -1,36 +1,37 @@
+import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:sheipe_app/core/network/auth_event.dart';
 import 'package:sheipe_app/core/network/interceptors/auth_interceptor.dart';
-import 'package:sheipe_app/features/auth/presentation/viewmodels/auth_view_model.dart';
+import 'package:sheipe_app/features/auth/data/local/auth_local_data_source.dart';
 
-class MockSecureStorage extends Mock implements FlutterSecureStorage {}
-class MockAuthViewModel extends Mock implements AuthViewModel {}
+class MockAuthLocalDataSource extends Mock implements AuthLocalDataSource {}
 class MockHandler extends Mock implements RequestInterceptorHandler {}
-class MockResponseHandler extends Mock implements ResponseInterceptorHandler {}
-
 class FakeRequestOptions extends Fake implements RequestOptions {}
-class FakeResponse extends Fake implements Response<dynamic> {}
 
 void main() {
-  setUpAll(() {
-    registerFallbackValue(FakeRequestOptions());
-    registerFallbackValue(FakeResponse());
-  });
+  setUpAll(() => registerFallbackValue(FakeRequestOptions()));
 
-  late MockSecureStorage storage;
-  late MockAuthViewModel authViewModel;
+  late MockAuthLocalDataSource mockLocal;
+  late StreamController<AuthEvent> eventController;
+  late AuthInterceptor interceptor;
 
   setUp(() {
-    storage = MockSecureStorage();
-    authViewModel = MockAuthViewModel();
+    mockLocal = MockAuthLocalDataSource();
+    eventController = StreamController<AuthEvent>.broadcast();
+    interceptor = AuthInterceptor(
+      localDataSource: mockLocal,
+      authEventSink: eventController.sink,
+      baseUrl: 'http://localhost:3000',
+    );
   });
 
-  group('AuthInterceptor — request', () {
-    test('attaches Bearer token header when token is present', () async {
-      when(() => storage.read(key: 'auth_token')).thenAnswer((_) async => 'my_token');
-      final interceptor = AuthInterceptor(storage: storage, authViewModel: authViewModel);
+  tearDown(() => eventController.close());
+
+  group('onRequest', () {
+    test('injects Bearer token when access token present', () async {
+      when(() => mockLocal.getAccessToken()).thenAnswer((_) async => 'my_token');
       final options = RequestOptions(path: '/test');
       final handler = MockHandler();
       when(() => handler.next(any())).thenReturn(null);
@@ -41,9 +42,8 @@ void main() {
       expect(captured.headers['Authorization'], 'Bearer my_token');
     });
 
-    test('does not attach header when token is absent', () async {
-      when(() => storage.read(key: 'auth_token')).thenAnswer((_) async => null);
-      final interceptor = AuthInterceptor(storage: storage, authViewModel: authViewModel);
+    test('does not inject header when no access token', () async {
+      when(() => mockLocal.getAccessToken()).thenAnswer((_) async => null);
       final options = RequestOptions(path: '/test');
       final handler = MockHandler();
       when(() => handler.next(any())).thenReturn(null);
@@ -52,25 +52,6 @@ void main() {
 
       final captured = verify(() => handler.next(captureAny())).captured.first as RequestOptions;
       expect(captured.headers.containsKey('Authorization'), isFalse);
-    });
-  });
-
-  group('AuthInterceptor — 401 response', () {
-    test('calls logout on AuthViewModel and clears token on 401', () async {
-      when(() => storage.delete(key: 'auth_token')).thenAnswer((_) async {});
-      when(() => authViewModel.logout()).thenAnswer((_) async {});
-      final interceptor = AuthInterceptor(storage: storage, authViewModel: authViewModel);
-      final response = Response(
-        requestOptions: RequestOptions(path: '/test'),
-        statusCode: 401,
-      );
-      final handler = MockResponseHandler();
-      when(() => handler.next(any())).thenReturn(null);
-
-      await interceptor.onResponse(response, handler);
-
-      verify(() => storage.delete(key: 'auth_token')).called(1);
-      verify(() => authViewModel.logout()).called(1);
     });
   });
 }

@@ -6,6 +6,7 @@ import 'package:sheipe_app/app_router.dart';
 import 'package:sheipe_app/core/di/service_locator.dart';
 import 'package:sheipe_app/core/storage/app_database.dart';
 import 'package:sheipe_app/features/auth/presentation/viewmodels/auth_view_model.dart';
+import 'package:sheipe_app/features/auth/presentation/viewmodels/auth_state.dart';
 
 class MockAppDatabase extends Mock implements AppDatabase {}
 class MockAuthViewModel extends Mock implements AuthViewModel {}
@@ -19,7 +20,7 @@ void main() {
     authViewModel = MockAuthViewModel();
     streamController = StreamController<AuthState>.broadcast();
 
-    when(() => authViewModel.state).thenReturn(const Unauthenticated());
+    when(() => authViewModel.state).thenReturn(const AuthUnauthenticated());
     when(() => authViewModel.stream).thenAnswer((_) => streamController.stream);
 
     sl.registerLazySingleton<AppDatabase>(() => MockAppDatabase());
