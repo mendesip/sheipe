@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:sheipe_app/app_router.dart';
@@ -29,16 +28,6 @@ void main() {
   });
 
   tearDown(() => streamController.close());
-
-  Widget buildApp() => BlocProvider<AuthViewModel>.value(
-        value: authViewModel,
-        child: Builder(
-          builder: (context) {
-            final appRouter = AppRouter(authViewModel: authViewModel);
-            return MaterialApp.router(routerConfig: appRouter.router);
-          },
-        ),
-      );
 
   testWidgets('redirects to /home when authenticated', (tester) async {
     when(() => authViewModel.state).thenReturn(AuthAuthenticated(_testUser));
