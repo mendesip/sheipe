@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_02_120100) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_02_120300) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -28,6 +28,31 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_02_120100) do
     t.index ["creator_id"], name: "index_exercises_on_creator_id"
     t.index ["is_system"], name: "index_exercises_on_is_system"
     t.index ["muscle_group"], name: "index_exercises_on_muscle_group"
+  end
+
+  create_table "routine_exercises", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.uuid "exercise_id", null: false
+    t.text "notes"
+    t.integer "position", null: false
+    t.uuid "routine_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_routine_exercises_on_exercise_id"
+    t.index ["routine_id", "position"], name: "index_routine_exercises_on_routine_id_and_position"
+    t.index ["routine_id"], name: "index_routine_exercises_on_routine_id"
+  end
+
+  create_table "routine_sets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "reps"
+    t.integer "rest_seconds"
+    t.uuid "routine_exercise_id", null: false
+    t.integer "set_number", null: false
+    t.string "set_type", default: "working", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "weight", precision: 6, scale: 2
+    t.index ["routine_exercise_id", "set_number"], name: "index_routine_sets_on_routine_exercise_id_and_set_number"
+    t.index ["routine_exercise_id"], name: "index_routine_sets_on_routine_exercise_id"
   end
 
   create_table "routines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -65,6 +90,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_02_120100) do
   end
 
   add_foreign_key "exercises", "users", column: "creator_id"
+  add_foreign_key "routine_exercises", "exercises"
+  add_foreign_key "routine_exercises", "routines"
+  add_foreign_key "routine_sets", "routine_exercises"
   add_foreign_key "routines", "users", column: "creator_id"
   add_foreign_key "sessions", "users"
 end

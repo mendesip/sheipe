@@ -40,13 +40,13 @@
 
 ## 5. API — RoutineExercise + RoutineSet models
 
-- [ ] 5.1 Write failing model specs for `RoutineExercise` and `RoutineSet`
-- [ ] 5.2 Generate migration `CreateRoutineExercises` — UUID PK, `routine_id`, `exercise_id`, `position` integer, `notes` text
-- [ ] 5.3 Generate migration `CreateRoutineSets` — UUID PK, `routine_exercise_id`, `set_number`, `weight` decimal, `reps` integer, `rest_seconds` integer, `set_type` string
-- [ ] 5.4 Create `app/models/routine_exercise.rb` — `belongs_to :routine`, `belongs_to :exercise`, `has_many :routine_sets`, validates `position` presence
-- [ ] 5.5 Create `app/models/routine_set.rb` — `belongs_to :routine_exercise`, `enum :set_type`, validates `set_number`, `set_type` presence
-- [ ] 5.6 Create factories for both models; run `db:migrate` and model specs
-- [ ] 5.7 Commit: `feat(api): add RoutineExercise and RoutineSet models`
+- [x] 5.1 Write failing model specs for `RoutineExercise` and `RoutineSet`
+- [x] 5.2 Generate migration `CreateRoutineExercises` — UUID PK, `routine_id`, `exercise_id`, `position` integer, `notes` text
+- [x] 5.3 Generate migration `CreateRoutineSets` — UUID PK, `routine_exercise_id`, `set_number`, `weight` decimal, `reps` integer, `rest_seconds` integer, `set_type` string
+- [x] 5.4 Create `app/models/routine_exercise.rb` — `belongs_to :routine`, `belongs_to :exercise`, `has_many :routine_sets`, validates `position` presence
+- [x] 5.5 Create `app/models/routine_set.rb` — `belongs_to :routine_exercise`, `enum :set_type`, validates `set_number`, `set_type` presence
+- [x] 5.6 Create factories for both models; run `db:migrate` and model specs
+- [x] 5.7 Commit: `feat(api): add RoutineExercise and RoutineSet models`
 
 ## 6. API — Routine serializer + endpoints
 
