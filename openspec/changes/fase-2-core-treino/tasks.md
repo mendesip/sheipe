@@ -129,12 +129,12 @@
 
 ## 13. Flutter — Workout feature (data layer)
 
-- [ ] 13.1 Create entities: `workout.dart`, `workout_exercise.dart`, `workout_set.dart`
-- [ ] 13.2 Create local and remote data sources for all three entities
-- [ ] 13.3 Write failing tests for `WorkoutRepository` — offline-first, active workout sets use fire-and-forget API path
-- [ ] 13.4 Create `lib/features/workout/data/repositories/workout_repository.dart`
-- [ ] 13.5 Run tests — verify all passing
-- [ ] 13.6 Commit: `feat(app): add Workout data layer with offline-first repository`
+- [x] 13.1 Create entities: `workout.dart`, `workout_exercise.dart`, `workout_set.dart`
+- [x] 13.2 Create local and remote data sources for all three entities
+- [x] 13.3 Write failing tests for `WorkoutRepository` — offline-first, active workout sets use fire-and-forget API path
+- [x] 13.4 Create `lib/features/workout/data/repositories/workout_repository.dart`
+- [x] 13.5 Run tests — verify all passing
+- [x] 13.6 Commit: `feat(app): add Workout data layer with offline-first repository`
 
 ## 14. Flutter — SyncService
 

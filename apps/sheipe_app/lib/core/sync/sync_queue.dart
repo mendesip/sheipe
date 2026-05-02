@@ -4,7 +4,7 @@ import 'package:uuid/uuid.dart';
 import '../storage/app_database.dart';
 
 /// Operation kind for an offline-first mutation.
-enum SyncOp { create, update, delete }
+enum SyncOp { create, update, delete, finish }
 
 /// Wraps writes to [SyncOperationsTable] so repositories don't need to know
 /// about Drift internals.
