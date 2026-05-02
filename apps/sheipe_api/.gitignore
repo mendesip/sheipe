@@ -1,3 +1,6 @@
+# Environment
+.env
+
 # Ruby / Rails
 vendor/bundle/
 log/*.log
