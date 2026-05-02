@@ -24,6 +24,15 @@ Rails.application.routes.draw do
                     controller: "routine_sets", as: :routine_sets
         end
       end
+
+      resources :workouts, only: [ :index, :show, :create, :update, :destroy ] do
+        post :finish, on: :member
+        resources :exercises, only: [ :create, :update, :destroy ],
+                  controller: "workout_exercises", as: :workout_exercises do
+          resources :sets, only: [ :create, :update, :destroy ],
+                    controller: "workout_sets", as: :workout_sets
+        end
+      end
     end
   end
 

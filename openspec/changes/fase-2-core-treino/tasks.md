@@ -85,16 +85,16 @@
 
 ## 9. API — Workout endpoints
 
-- [ ] 9.1 Create serializers: `WorkoutSerializer` (nested exercises + sets), `WorkoutExerciseSerializer`, `WorkoutSetSerializer`
-- [ ] 9.2 Write `spec/requests/api/v1/workouts_spec.rb` — POST free/from-routine/foreign-routine, GET list (filters), GET show, PATCH, DELETE, POST finish (in-progress, already finished, foreign → 403)
-- [ ] 9.3 Write `spec/requests/api/v1/workout_exercises_spec.rb` and `spec/requests/api/v1/workout_sets_spec.rb`
-- [ ] 9.4 Run specs — verify failures
-- [ ] 9.5 Create `app/controllers/api/v1/workouts_controller.rb` — CRUD + `finish` action; pre-population from routine in a transaction
-- [ ] 9.6 Create `app/controllers/api/v1/workout_exercises_controller.rb` and `workout_sets_controller.rb`
-- [ ] 9.7 Add routes: `resources :workouts { post :finish; resources :exercises (as: workout_exercises) { resources :sets (as: workout_sets) } }`
-- [ ] 9.8 Run all workout specs — verify passing
-- [ ] 9.9 Run full suite `bundle exec rspec` — verify 0 failures
-- [ ] 9.10 Commit: `feat(api): add Workout CRUD with finish action and nested exercises/sets`
+- [x] 9.1 Create serializers: `WorkoutSerializer` (nested exercises + sets), `WorkoutExerciseSerializer`, `WorkoutSetSerializer`
+- [x] 9.2 Write `spec/requests/api/v1/workouts_spec.rb` — POST free/from-routine/foreign-routine, GET list (filters), GET show, PATCH, DELETE, POST finish (in-progress, already finished, foreign → 403)
+- [x] 9.3 Write `spec/requests/api/v1/workout_exercises_spec.rb` and `spec/requests/api/v1/workout_sets_spec.rb`
+- [x] 9.4 Run specs — verify failures
+- [x] 9.5 Create `app/controllers/api/v1/workouts_controller.rb` — CRUD + `finish` action; pre-population from routine in a transaction
+- [x] 9.6 Create `app/controllers/api/v1/workout_exercises_controller.rb` and `workout_sets_controller.rb`
+- [x] 9.7 Add routes: `resources :workouts { post :finish; resources :exercises (as: workout_exercises) { resources :sets (as: workout_sets) } }`
+- [x] 9.8 Run all workout specs — verify passing
+- [x] 9.9 Run full suite `bundle exec rspec` — verify 0 failures
+- [x] 9.10 Commit: `feat(api): add Workout CRUD with finish action and nested exercises/sets`
 
 ## 10. Flutter — Drift schema extension
 
