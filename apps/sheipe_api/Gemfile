@@ -25,4 +25,5 @@ end
 group :test do
   gem "rswag-specs"
   gem "rspec-rails"
+  gem "factory_bot_rails"
 end
