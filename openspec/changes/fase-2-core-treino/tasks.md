@@ -98,14 +98,14 @@
 
 ## 10. Flutter — Drift schema extension
 
-- [ ] 10.1 Add `uuid` package to `pubspec.yaml`
-- [ ] 10.2 Create `ExercisesTable`, `RoutinesTable`, `RoutineExercisesTable`, `RoutineSetsTable` in `lib/core/storage/app_database.dart`
-- [ ] 10.3 Create `WorkoutsTable`, `WorkoutExercisesTable`, `WorkoutSetsTable` in the same file
-- [ ] 10.4 Add `SyncOperationsTable` (id, entity_type, entity_id, operation enum create/update/delete, payload JSON, created_at, synced_at nullable)
-- [ ] 10.5 Bump Drift schema version and write migration
-- [ ] 10.6 Run `flutter pub run build_runner build` — verify generated code compiles
-- [ ] 10.7 Run `flutter analyze lib/` — verify `No issues found!`
-- [ ] 10.8 Commit: `feat(app): extend Drift schema with 7 training tables and SyncOperationsTable`
+- [x] 10.1 Add `uuid` package to `pubspec.yaml`
+- [x] 10.2 Create `ExercisesTable`, `RoutinesTable`, `RoutineExercisesTable`, `RoutineSetsTable` in `lib/core/storage/app_database.dart`
+- [x] 10.3 Create `WorkoutsTable`, `WorkoutExercisesTable`, `WorkoutSetsTable` in the same file
+- [x] 10.4 Add `SyncOperationsTable` (id, entity_type, entity_id, operation enum create/update/delete, payload JSON, created_at, synced_at nullable)
+- [x] 10.5 Bump Drift schema version and write migration
+- [x] 10.6 Run `flutter pub run build_runner build` — verify generated code compiles
+- [x] 10.7 Run `flutter analyze lib/` — verify `No issues found!`
+- [x] 10.8 Commit: `feat(app): extend Drift schema with 7 training tables and SyncOperationsTable`
 
 ## 11. Flutter — Exercise feature (data layer)
 

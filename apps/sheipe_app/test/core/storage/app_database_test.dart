@@ -20,8 +20,33 @@ void main() {
     expect(db, isA<AppDatabase>());
   });
 
-  test('schemaVersion is 1', () {
-    expect(db.schemaVersion, 1);
+  test('schemaVersion is 2', () {
+    expect(db.schemaVersion, 2);
+  });
+
+  test('exposes all training tables', () async {
+    expect(db.exercisesTable, isNotNull);
+    expect(db.routinesTable, isNotNull);
+    expect(db.routineExercisesTable, isNotNull);
+    expect(db.routineSetsTable, isNotNull);
+    expect(db.workoutsTable, isNotNull);
+    expect(db.workoutExercisesTable, isNotNull);
+    expect(db.workoutSetsTable, isNotNull);
+    expect(db.syncOperationsTable, isNotNull);
+  });
+
+  test('can insert and read an exercise row', () async {
+    await db.into(db.exercisesTable).insert(
+          ExercisesTableCompanion.insert(
+            id: 'ex-1',
+            name: 'Bench Press',
+            muscleGroup: 'chest',
+            category: 'strength',
+          ),
+        );
+    final row = await (db.select(db.exercisesTable)..where((t) => t.id.equals('ex-1'))).getSingle();
+    expect(row.name, 'Bench Press');
+    expect(row.isSystem, false);
   });
 
   test('SC-005: constructor takes only executor; table list is in annotation', () {
