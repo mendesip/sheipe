@@ -66,13 +66,13 @@
 
 ## 7. API — Workout model + policy
 
-- [ ] 7.1 Write failing model spec `spec/models/workout_spec.rb`
-- [ ] 7.2 Generate migration `CreateWorkouts` — UUID PK, `user_id`, `routine_id` nullable, `gym_id` nullable, `started_at`, `finished_at` nullable, `notes`, `trainer_notes`
-- [ ] 7.3 Create `app/models/workout.rb` — `belongs_to :user`, `belongs_to :routine, optional: true`, `has_many :workout_exercises`, `scope :finished`
-- [ ] 7.4 Create factory; run `db:migrate` and model spec
-- [ ] 7.5 Create `app/policies/workout_policy.rb` — full CRUD for owner; `finish?` for owner
-- [ ] 7.6 Write policy spec
-- [ ] 7.7 Commit: `feat(api): add Workout model and WorkoutPolicy`
+- [x] 7.1 Write failing model spec `spec/models/workout_spec.rb`
+- [x] 7.2 Generate migration `CreateWorkouts` — UUID PK, `user_id`, `routine_id` nullable, `gym_id` nullable, `started_at`, `finished_at` nullable, `notes`, `trainer_notes`
+- [x] 7.3 Create `app/models/workout.rb` — `belongs_to :user`, `belongs_to :routine, optional: true`, `has_many :workout_exercises`, `scope :finished`
+- [x] 7.4 Create factory; run `db:migrate` and model spec
+- [x] 7.5 Create `app/policies/workout_policy.rb` — full CRUD for owner; `finish?` for owner
+- [x] 7.6 Write policy spec
+- [x] 7.7 Commit: `feat(api): add Workout model and WorkoutPolicy`
 
 ## 8. API — WorkoutExercise + WorkoutSet models
 

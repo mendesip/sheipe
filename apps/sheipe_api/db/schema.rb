@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_02_120300) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_02_120400) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -89,10 +89,27 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_02_120300) do
     t.index "lower((email)::text)", name: "index_users_on_lower_email", unique: true
   end
 
+  create_table "workouts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "finished_at"
+    t.uuid "gym_id"
+    t.text "notes"
+    t.uuid "routine_id"
+    t.datetime "started_at", null: false
+    t.text "trainer_notes"
+    t.datetime "updated_at", null: false
+    t.uuid "user_id", null: false
+    t.index ["routine_id"], name: "index_workouts_on_routine_id"
+    t.index ["user_id", "started_at"], name: "index_workouts_on_user_id_and_started_at"
+    t.index ["user_id"], name: "index_workouts_on_user_id"
+  end
+
   add_foreign_key "exercises", "users", column: "creator_id"
   add_foreign_key "routine_exercises", "exercises"
   add_foreign_key "routine_exercises", "routines"
   add_foreign_key "routine_sets", "routine_exercises"
   add_foreign_key "routines", "users", column: "creator_id"
   add_foreign_key "sessions", "users"
+  add_foreign_key "workouts", "routines"
+  add_foreign_key "workouts", "users"
 end
