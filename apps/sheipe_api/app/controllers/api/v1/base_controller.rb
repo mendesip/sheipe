@@ -5,6 +5,9 @@ module Api
 
       authorize :user, through: :current_user
 
+      DEFAULT_PER_PAGE = 25
+      MAX_PER_PAGE = 100
+
       before_action :authenticate
       skip_before_action :authenticate, only: [ :not_found ]
 
@@ -17,12 +20,27 @@ module Api
       rescue_from ActiveRecord::RecordInvalid,          with: :render_validation_failed
       rescue_from ActionController::ParameterMissing,   with: :render_bad_request
       rescue_from ActiveRecord::RecordNotFound,         with: :render_not_found
+      rescue_from ArgumentError,                        with: :render_argument_error
 
       def not_found
         render_error("not_found", "Not found", nil, :not_found)
       end
 
       private
+
+      def paginate(scope)
+        page = [ params[:page].to_i, 1 ].max
+        per  = (params[:per_page].presence || DEFAULT_PER_PAGE).to_i.clamp(1, MAX_PER_PAGE)
+        total = scope.count
+        records = scope.offset((page - 1) * per).limit(per)
+        meta = {
+          current_page: page,
+          total_pages:  (total.to_f / per).ceil,
+          total_count:  total,
+          per_page:     per
+        }
+        [ records, meta ]
+      end
 
       def authenticate
         token = request.headers["Authorization"]&.delete_prefix("Bearer ")&.strip
@@ -46,6 +64,10 @@ module Api
       def render_validation_failed(e)
         details = e.record.errors.to_hash
         render_error("validation_failed", "Validation failed", details, :unprocessable_entity)
+      end
+
+      def render_argument_error(e)
+        render_error("validation_failed", e.message, nil, :unprocessable_entity)
       end
 
       def render_forbidden(_e)

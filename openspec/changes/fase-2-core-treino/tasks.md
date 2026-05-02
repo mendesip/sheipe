@@ -20,12 +20,12 @@
 
 ## 3. API — Exercise endpoints
 
-- [ ] 3.1 Write `spec/requests/api/v1/exercises_spec.rb` — GET index (all filters), GET show (own + other user's custom → 404, system → 200), POST 201/422, PATCH (owner/non-owner/system), DELETE (owner/non-owner)
-- [ ] 3.2 Run spec — verify `FAILED — No route matches`
-- [ ] 3.3 Create `app/controllers/api/v1/exercises_controller.rb` — `index` (scope: system + creator), `show`, `create`, `update`, `destroy`; `authorize! @exercise` on each action
-- [ ] 3.4 Add `resources :exercises, only: [:index, :show, :create, :update, :destroy]` to routes
-- [ ] 3.5 Run exercise request spec — verify all passing
-- [ ] 3.6 Commit: `feat(api): add Exercise CRUD endpoints with ActionPolicy`
+- [x] 3.1 Write `spec/requests/api/v1/exercises_spec.rb` — GET index (all filters), GET show (own + other user's custom → 404, system → 200), POST 201/422, PATCH (owner/non-owner/system), DELETE (owner/non-owner)
+- [x] 3.2 Run spec — verify `FAILED — No route matches`
+- [x] 3.3 Create `app/controllers/api/v1/exercises_controller.rb` — `index` (scope: system + creator), `show`, `create`, `update`, `destroy`; `authorize! @exercise` on each action
+- [x] 3.4 Add `resources :exercises, only: [:index, :show, :create, :update, :destroy]` to routes
+- [x] 3.5 Run exercise request spec — verify all passing
+- [x] 3.6 Commit: `feat(api): add Exercise CRUD endpoints with ActionPolicy`
 
 ## 4. API — Routine model + policy
 

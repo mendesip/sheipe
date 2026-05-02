@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
       resource :me, only: [ :show, :update ], controller: "me"
       resources :users, only: [ :show ]
+      resources :exercises, only: [ :index, :show, :create, :update, :destroy ]
     end
   end
 
