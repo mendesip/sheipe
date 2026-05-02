@@ -147,13 +147,13 @@
 
 ## 15. Flutter — Exercise ViewModels + screens
 
-- [ ] 15.1 Write `ExerciseViewModel` tests — `loadExercises` (with filters), `createExercise`, `deleteExercise` states
-- [ ] 15.2 Create `lib/features/exercise/presentation/viewmodels/exercise_view_model.dart` (Cubit)
-- [ ] 15.3 Run tests — verify all passing
-- [ ] 15.4 Create `lib/features/exercise/presentation/screens/exercise_library_screen.dart` — search bar, filter chips (muscle_group, category), list from Drift stream
-- [ ] 15.5 Create `lib/features/exercise/presentation/screens/exercise_detail_screen.dart` — name, category, muscle_group, description; edit FAB (owner only)
-- [ ] 15.6 Create `lib/features/exercise/presentation/screens/exercise_form_screen.dart` — name, muscle_group dropdown, category dropdown, description; create/update on submit
-- [ ] 15.7 Commit: `feat(app): add exercise screens (library, detail, form)`
+- [x] 15.1 Write `ExerciseViewModel` tests — `loadExercises` (with filters), `createExercise`, `deleteExercise` states
+- [x] 15.2 Create `lib/features/exercise/presentation/viewmodels/exercise_view_model.dart` (Cubit)
+- [x] 15.3 Run tests — verify all passing
+- [x] 15.4 Create `lib/features/exercise/presentation/screens/exercise_library_screen.dart` — search bar, filter chips (muscle_group, category), list from Drift stream
+- [x] 15.5 Create `lib/features/exercise/presentation/screens/exercise_detail_screen.dart` — name, category, muscle_group, description; edit FAB (owner only)
+- [x] 15.6 Create `lib/features/exercise/presentation/screens/exercise_form_screen.dart` — name, muscle_group dropdown, category dropdown, description; create/update on submit
+- [x] 15.7 Commit: `feat(app): add exercise screens (library, detail, form)`
 
 ## 16. Flutter — Routine ViewModels + screens
 
