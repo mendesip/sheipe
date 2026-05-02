@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_02_005048) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_02_005301) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "access_token", null: false
+    t.datetime "access_token_expires_at", null: false
+    t.datetime "created_at", null: false
+    t.string "refresh_token", null: false
+    t.datetime "refresh_token_expires_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "user_id", null: false
+    t.index ["access_token"], name: "index_sessions_on_access_token", unique: true
+    t.index ["refresh_token"], name: "index_sessions_on_refresh_token", unique: true
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "avatar_url"
@@ -25,4 +38,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_02_005048) do
     t.datetime "updated_at", null: false
     t.index "lower((email)::text)", name: "index_users_on_lower_email", unique: true
   end
+
+  add_foreign_key "sessions", "users"
 end
