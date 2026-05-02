@@ -119,13 +119,13 @@
 
 ## 12. Flutter — Routine feature (data layer)
 
-- [ ] 12.1 Create entities: `lib/features/routine/domain/entities/routine.dart`, `routine_exercise.dart`, `routine_set.dart`
-- [ ] 12.2 Create local data sources for Routine, RoutineExercise, RoutineSet
-- [ ] 12.3 Create remote data sources for Routine and nested resources
-- [ ] 12.4 Write failing tests for `RoutineRepository` — same offline-first contract as ExerciseRepository
-- [ ] 12.5 Create `lib/features/routine/data/repositories/routine_repository.dart`
-- [ ] 12.6 Run tests — verify all passing
-- [ ] 12.7 Commit: `feat(app): add Routine data layer with offline-first repository`
+- [x] 12.1 Create entities: `lib/features/routine/domain/entities/routine.dart`, `routine_exercise.dart`, `routine_set.dart`
+- [x] 12.2 Create local data sources for Routine, RoutineExercise, RoutineSet
+- [x] 12.3 Create remote data sources for Routine and nested resources
+- [x] 12.4 Write failing tests for `RoutineRepository` — same offline-first contract as ExerciseRepository
+- [x] 12.5 Create `lib/features/routine/data/repositories/routine_repository.dart`
+- [x] 12.6 Run tests — verify all passing
+- [x] 12.7 Commit: `feat(app): add Routine data layer with offline-first repository`
 
 ## 13. Flutter — Workout feature (data layer)
 
