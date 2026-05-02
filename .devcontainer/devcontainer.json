@@ -4,6 +4,9 @@
   "service": "app",
   "workspaceFolder": "/workspace",
   "forwardPorts": [3000, 5432],
+  "remoteEnv": {
+    "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}"
+  },
   "postCreateCommand": "bash .devcontainer/setup.sh",
   "customizations": {
     "vscode": {
@@ -12,7 +15,8 @@
         "bung87.rails",
         "hridoy.rails-snippets",
         "Dart-Code.flutter",
-        "Dart-Code.dart-code"
+        "Dart-Code.dart-code",
+        "anthropics.claude-code"
       ],
       "settings": {
         "dart.flutterSdkPath": "/opt/flutter",

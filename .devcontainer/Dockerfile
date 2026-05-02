@@ -44,4 +44,10 @@ RUN git clone --depth 1 \
   && flutter precache --no-android --no-ios --no-fuchsia --no-macos --no-windows \
   && flutter doctor --suppress-analytics
 
+# Node.js (LTS) + Claude Code CLI
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
+  && apt-get install -y --no-install-recommends nodejs \
+  && rm -rf /var/lib/apt/lists/* \
+  && npm install -g @anthropic-ai/claude-code
+
 WORKDIR /workspace

@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "apps/sheipe_api"
+		},
+		{
+			"path": "apps/sheipe_app"
+		}
+	],
+	"settings": {
+		"cSpell.words": [
+			"sheipe"
+		]
+	}
+}
