@@ -1,0 +1,31 @@
+{
+  "name": "sheipe",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [3000, 5432],
+  "remoteEnv": {
+    "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}"
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Shopify.ruby-lsp",
+        "bung87.rails",
+        "hridoy.rails-snippets",
+        "Dart-Code.flutter",
+        "Dart-Code.dart-code",
+        "anthropics.claude-code"
+      ],
+      "settings": {
+        "dart.flutterSdkPath": "/opt/flutter",
+        "ruby.rbenvPath": "/usr/local/rbenv",
+        "[dart]": {
+          "editor.formatOnSave": true,
+          "editor.rulers": [80]
+        }
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 # Functionality
+gem "bcrypt", "~> 3.1.7"
 gem "rack-cors"
 gem "pagy"
 gem "alba"
@@ -25,4 +26,5 @@ end
 group :test do
   gem "rswag-specs"
   gem "rspec-rails"
+  gem "factory_bot_rails"
 end

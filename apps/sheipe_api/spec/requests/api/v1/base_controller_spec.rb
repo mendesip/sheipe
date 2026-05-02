@@ -22,6 +22,8 @@ RSpec.describe Api::V1::BaseController, type: :controller do
   end
 
   before do
+    allow(controller).to receive(:authenticate)
+
     routes.draw do
       get 'trigger_not_found'   => 'api/v1/base#trigger_not_found'
       get 'trigger_bad_request' => 'api/v1/base#trigger_bad_request'

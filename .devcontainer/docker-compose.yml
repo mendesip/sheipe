@@ -1,0 +1,37 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspace:cached
+      - bundle_cache:/usr/local/rbenv/versions/3.3.10/lib/ruby/gems
+      - pub_cache:/root/.pub-cache
+    ports:
+      - "3000:3000"
+    env_file:
+      - ../apps/sheipe_api/.env
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sleep infinity
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  bundle_cache:
+  pub_cache:
+  postgres_data:
