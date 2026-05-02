@@ -13,10 +13,10 @@
 
 ## 2. API — Exercise serializer + seed
 
-- [ ] 2.1 Create `app/serializers/exercise_serializer.rb` — `attributes :id, :name, :description, :muscle_group, :category, :is_system, :creator_id`
-- [ ] 2.2 Create `db/seeds/exercises.rb` with ~30 system exercises across all muscle groups; require from `db/seeds.rb`
-- [ ] 2.3 Run `rails db:seed` — verify 30 exercises created with `is_system: true`
-- [ ] 2.4 Commit: `feat(api): add ExerciseSerializer and system exercise seed`
+- [x] 2.1 Create `app/serializers/exercise_serializer.rb` — `attributes :id, :name, :description, :muscle_group, :category, :is_system, :creator_id`
+- [x] 2.2 Create `db/seeds/exercises.rb` with ~30 system exercises across all muscle groups; require from `db/seeds.rb`
+- [x] 2.3 Run `rails db:seed` — verify 30 exercises created with `is_system: true`
+- [x] 2.4 Commit: `feat(api): add ExerciseSerializer and system exercise seed`
 
 ## 3. API — Exercise endpoints
 
