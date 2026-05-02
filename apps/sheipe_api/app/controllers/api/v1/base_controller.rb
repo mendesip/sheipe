@@ -1,8 +1,16 @@
 module Api
   module V1
     class BaseController < ApplicationController
+      include ActionPolicy::Controller
+
+      authorize :user, through: :current_user
+
       before_action :authenticate
       skip_before_action :authenticate, only: [ :not_found ]
+
+      def current_user
+        Current.user
+      end
 
       rescue_from StandardError,                        with: :render_internal_error
       rescue_from ActionPolicy::Unauthorized,           with: :render_forbidden
