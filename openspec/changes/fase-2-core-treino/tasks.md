@@ -50,19 +50,19 @@
 
 ## 6. API — Routine serializer + endpoints
 
-- [ ] 6.1 Create `app/serializers/routine_serializer.rb` — includes nested `routine_exercises` (with nested `routine_sets`)
-- [ ] 6.2 Create `app/serializers/routine_exercise_serializer.rb` and `routine_set_serializer.rb`
-- [ ] 6.3 Write `spec/requests/api/v1/routines_spec.rb` — list (own only), show (own detail + foreign → 403), create (201/422), update (owner/non-owner), delete (owner)
-- [ ] 6.4 Write `spec/requests/api/v1/routine_exercises_spec.rb` — POST (valid/invalid exercise), PATCH, DELETE
-- [ ] 6.5 Write `spec/requests/api/v1/routine_sets_spec.rb` — POST (valid/invalid set_type), PATCH, DELETE
-- [ ] 6.6 Run all three specs — verify failures
-- [ ] 6.7 Create `app/controllers/api/v1/routines_controller.rb` — full CRUD with `authorize!`
-- [ ] 6.8 Create `app/controllers/api/v1/routine_exercises_controller.rb` — POST, PATCH, DELETE; authorizes on parent routine
-- [ ] 6.9 Create `app/controllers/api/v1/routine_sets_controller.rb` — POST, PATCH, DELETE
-- [ ] 6.10 Add nested routes: `resources :routines { resources :exercises (as: routine_exercises) { resources :sets (as: routine_sets) } }`
-- [ ] 6.11 Run all three request specs — verify all passing
-- [ ] 6.12 Run full suite `bundle exec rspec` — verify 0 failures
-- [ ] 6.13 Commit: `feat(api): add Routine CRUD with nested exercises and sets`
+- [x] 6.1 Create `app/serializers/routine_serializer.rb` — includes nested `routine_exercises` (with nested `routine_sets`)
+- [x] 6.2 Create `app/serializers/routine_exercise_serializer.rb` and `routine_set_serializer.rb`
+- [x] 6.3 Write `spec/requests/api/v1/routines_spec.rb` — list (own only), show (own detail + foreign → 403), create (201/422), update (owner/non-owner), delete (owner)
+- [x] 6.4 Write `spec/requests/api/v1/routine_exercises_spec.rb` — POST (valid/invalid exercise), PATCH, DELETE
+- [x] 6.5 Write `spec/requests/api/v1/routine_sets_spec.rb` — POST (valid/invalid set_type), PATCH, DELETE
+- [x] 6.6 Run all three specs — verify failures
+- [x] 6.7 Create `app/controllers/api/v1/routines_controller.rb` — full CRUD with `authorize!`
+- [x] 6.8 Create `app/controllers/api/v1/routine_exercises_controller.rb` — POST, PATCH, DELETE; authorizes on parent routine
+- [x] 6.9 Create `app/controllers/api/v1/routine_sets_controller.rb` — POST, PATCH, DELETE
+- [x] 6.10 Add nested routes: `resources :routines { resources :exercises (as: routine_exercises) { resources :sets (as: routine_sets) } }`
+- [x] 6.11 Run all three request specs — verify all passing
+- [x] 6.12 Run full suite `bundle exec rspec` — verify 0 failures
+- [x] 6.13 Commit: `feat(api): add Routine CRUD with nested exercises and sets`
 
 ## 7. API — Workout model + policy
 

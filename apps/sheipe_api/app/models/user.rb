@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :sessions, dependent: :destroy
+  has_many :exercises, foreign_key: :creator_id, dependent: :nullify
+  has_many :routines, foreign_key: :creator_id, dependent: :destroy
+  has_many :workouts, dependent: :destroy
 
   enum :role, { athlete: 0, trainer: 1, admin: 2 }, default: :athlete
 

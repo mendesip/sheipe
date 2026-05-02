@@ -16,6 +16,14 @@ Rails.application.routes.draw do
       resource :me, only: [ :show, :update ], controller: "me"
       resources :users, only: [ :show ]
       resources :exercises, only: [ :index, :show, :create, :update, :destroy ]
+
+      resources :routines, only: [ :index, :show, :create, :update, :destroy ] do
+        resources :exercises, only: [ :create, :update, :destroy ],
+                  controller: "routine_exercises", as: :routine_exercises do
+          resources :sets, only: [ :create, :update, :destroy ],
+                    controller: "routine_sets", as: :routine_sets
+        end
+      end
     end
   end
 
