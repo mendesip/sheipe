@@ -157,14 +157,14 @@
 
 ## 16. Flutter — Routine ViewModels + screens
 
-- [ ] 16.1 Write `RoutineViewModel` tests — `loadRoutines`, `createRoutine`, `addExercise`, `addSet`, `deleteRoutine`
-- [ ] 16.2 Create `lib/features/routine/presentation/viewmodels/routine_view_model.dart`
-- [ ] 16.3 Run tests — verify all passing
-- [ ] 16.4 Create `lib/features/routine/presentation/screens/routines_list_screen.dart` — list from Drift, FAB to create
-- [ ] 16.5 Create `lib/features/routine/presentation/screens/routine_detail_screen.dart` — exercises ordered by position, each with sets; edit/delete actions
-- [ ] 16.6 Create `lib/features/routine/presentation/screens/routine_form_screen.dart` — name, description, add exercise button → ExercisePickerScreen
-- [ ] 16.7 Create `lib/features/routine/presentation/screens/exercise_picker_screen.dart` — delegates to ExerciseLibraryScreen with a "select" mode flag
-- [ ] 16.8 Commit: `feat(app): add routine screens (list, detail, form, exercise picker)`
+- [x] 16.1 Write `RoutineViewModel` tests — `loadRoutines`, `createRoutine`, `addExercise`, `addSet`, `deleteRoutine`
+- [x] 16.2 Create `lib/features/routine/presentation/viewmodels/routine_view_model.dart`
+- [x] 16.3 Run tests — verify all passing
+- [x] 16.4 Create `lib/features/routine/presentation/screens/routines_list_screen.dart` — list from Drift, FAB to create
+- [x] 16.5 Create `lib/features/routine/presentation/screens/routine_detail_screen.dart` — exercises ordered by position, each with sets; edit/delete actions
+- [x] 16.6 Create `lib/features/routine/presentation/screens/routine_form_screen.dart` — name, description, add exercise button → ExercisePickerScreen
+- [x] 16.7 Create `lib/features/routine/presentation/screens/exercise_picker_screen.dart` — delegates to ExerciseLibraryScreen with a "select" mode flag
+- [x] 16.8 Commit: `feat(app): add routine screens (list, detail, form, exercise picker)`
 
 ## 17. Flutter — Active Workout ViewModels
 
