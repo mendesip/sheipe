@@ -168,12 +168,12 @@
 
 ## 17. Flutter — Active Workout ViewModels
 
-- [ ] 17.1 Write `ActiveWorkoutViewModel` tests — `startWorkout`, `addExercise`, `logSet`, `updateSet`, `finishWorkout`, `restTimerState`
-- [ ] 17.2 Create `lib/features/workout/presentation/viewmodels/active_workout_view_model.dart` — `currentRestSeconds` tracked in state
-- [ ] 17.3 Write `WorkoutHistoryViewModel` tests — `loadHistory` (pagination), `deleteWorkout`
-- [ ] 17.4 Create `lib/features/workout/presentation/viewmodels/workout_history_view_model.dart`
-- [ ] 17.5 Run all workout VM tests — verify all passing
-- [ ] 17.6 Commit: `feat(app): add ActiveWorkoutViewModel and WorkoutHistoryViewModel`
+- [x] 17.1 Write `ActiveWorkoutViewModel` tests — `startWorkout`, `addExercise`, `logSet`, `updateSet`, `finishWorkout`, `restTimerState`
+- [x] 17.2 Create `lib/features/workout/presentation/viewmodels/active_workout_view_model.dart` — `currentRestSeconds` tracked in state
+- [x] 17.3 Write `WorkoutHistoryViewModel` tests — `loadHistory` (pagination), `deleteWorkout`
+- [x] 17.4 Create `lib/features/workout/presentation/viewmodels/workout_history_view_model.dart`
+- [x] 17.5 Run all workout VM tests — verify all passing
+- [x] 17.6 Commit: `feat(app): add ActiveWorkoutViewModel and WorkoutHistoryViewModel`
 
 ## 18. Flutter — Workout screens
 
