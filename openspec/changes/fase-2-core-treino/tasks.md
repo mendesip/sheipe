@@ -141,7 +141,7 @@
 - [x] 14.1 Write failing test `test/core/sync/sync_service_test.dart` — drains queue, marks ops synced, retries on failure
 - [x] 14.2 Create `lib/core/sync/sync_service.dart` — singleton; `start()` subscribes to connectivity; `_processQueue()` iterates `SyncOperationsTable` where `synced_at IS NULL`; dispatches to correct remote data source by `entity_type`
 - [x] 14.3 Run test — verify all passing
-- [ ] 14.4 Register `SyncService` in `service_locator.dart`; call `syncService.start()` in `AuthAuthenticated` state listener in `main.dart` *(deferred to section 19 wiring step)*
+- [x] 14.4 Register `SyncService` in `service_locator.dart`; call `syncService.start()` in `AuthAuthenticated` state listener in `main.dart`
 - [x] 14.5 Run `flutter analyze lib/` — verify `No issues found!`
 - [x] 14.6 Commit: `feat(app): add SyncService for offline-first background sync`
 
@@ -189,8 +189,8 @@
 
 ## 19. Flutter — Routing + DI wiring
 
-- [ ] 19.1 Add routes to `lib/app_router.dart`: `/exercises`, `/exercises/:id`, `/exercises/new`, `/exercises/:id/edit`, `/routines`, `/routines/:id`, `/routines/new`, `/workouts`, `/workouts/new` (StartWorkout), `/workouts/:id/active` (modal), `/workouts/:id/summary`, `/workouts/:id`
-- [ ] 19.2 Update `lib/core/di/service_locator.dart` — register all Exercise/Routine/Workout LocalDataSource, RemoteDataSource, Repository, ViewModel; register `SyncService`
-- [ ] 19.3 Run `flutter analyze lib/` — verify `No issues found!`
-- [ ] 19.4 Run full Flutter test suite `flutter test` — verify all passing
-- [ ] 19.5 Commit: `feat(app): wire training feature routes and DI for Phase 2`
+- [x] 19.1 Add routes to `lib/app_router.dart`: `/exercises`, `/exercises/:id`, `/exercises/new`, `/exercises/:id/edit`, `/routines`, `/routines/:id`, `/routines/new`, `/workouts`, `/workouts/new` (StartWorkout), `/workouts/:id/active` (modal), `/workouts/:id/summary`, `/workouts/:id`
+- [x] 19.2 Update `lib/core/di/service_locator.dart` — register all Exercise/Routine/Workout LocalDataSource, RemoteDataSource, Repository, ViewModel; register `SyncService`
+- [x] 19.3 Run `flutter analyze lib/` — verify `No issues found!`
+- [x] 19.4 Run full Flutter test suite `flutter test` — verify all passing
+- [x] 19.5 Commit: `feat(app): wire training feature routes and DI for Phase 2`
