@@ -177,15 +177,15 @@
 
 ## 18. Flutter — Workout screens
 
-- [ ] 18.1 Create `lib/features/workout/presentation/screens/start_workout_screen.dart` — list routines (or "start free"), button triggers `startWorkout(routineId?)`
-- [ ] 18.2 Create `lib/features/workout/presentation/screens/active_workout_screen.dart` — fullscreen modal; exercise list with sets; FAB to add exercise; "Finish" button with confirmation
-- [ ] 18.3 Create `lib/features/workout/presentation/widgets/exercise_set_logger_sheet.dart` — bottom sheet: weight, reps, rpe inputs; "Done" saves set via ViewModel
-- [ ] 18.4 Create `lib/features/workout/presentation/widgets/rest_timer_overlay.dart` — `StatefulWidget`; countdown from `currentRestSeconds`; skip button
-- [ ] 18.5 Create `lib/features/workout/presentation/widgets/add_exercise_sheet.dart` — search exercises, add to active workout via ViewModel
-- [ ] 18.6 Create `lib/features/workout/presentation/screens/workout_summary_screen.dart` — total sets, volume, duration; "Share" button (navigates to future CreatePostScreen, disabled for now)
-- [ ] 18.7 Create `lib/features/workout/presentation/screens/workout_history_screen.dart` — list from Drift stream, ordered by started_at DESC
-- [ ] 18.8 Create `lib/features/workout/presentation/screens/workout_detail_screen.dart` — workout header + exercises with logged sets
-- [ ] 18.9 Commit: `feat(app): add workout screens (start, active, summary, history, detail)`
+- [x] 18.1 Create `lib/features/workout/presentation/screens/start_workout_screen.dart` — list routines (or "start free"), button triggers `startWorkout(routineId?)`
+- [x] 18.2 Create `lib/features/workout/presentation/screens/active_workout_screen.dart` — fullscreen modal; exercise list with sets; FAB to add exercise; "Finish" button with confirmation
+- [x] 18.3 Create `lib/features/workout/presentation/widgets/exercise_set_logger_sheet.dart` — bottom sheet: weight, reps, rpe inputs; "Done" saves set via ViewModel
+- [x] 18.4 Create `lib/features/workout/presentation/widgets/rest_timer_overlay.dart` — `StatefulWidget`; countdown from `currentRestSeconds`; skip button
+- [x] 18.5 Create `lib/features/workout/presentation/widgets/add_exercise_sheet.dart` — search exercises, add to active workout via ViewModel
+- [x] 18.6 Create `lib/features/workout/presentation/screens/workout_summary_screen.dart` — total sets, volume, duration; "Share" button (navigates to future CreatePostScreen, disabled for now)
+- [x] 18.7 Create `lib/features/workout/presentation/screens/workout_history_screen.dart` — list from Drift stream, ordered by started_at DESC
+- [x] 18.8 Create `lib/features/workout/presentation/screens/workout_detail_screen.dart` — workout header + exercises with logged sets
+- [x] 18.9 Commit: `feat(app): add workout screens (start, active, summary, history, detail)`
 
 ## 19. Flutter — Routing + DI wiring
 
