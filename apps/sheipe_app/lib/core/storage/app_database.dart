@@ -1,8 +1,6 @@
-import 'dart:io';
 import 'package:drift/drift.dart';
-import 'package:drift/native.dart';
-import 'package:path/path.dart' as p;
-import 'package:path_provider/path_provider.dart';
+import 'connection/native.dart'
+    if (dart.library.js_interop) 'connection/web.dart';
 
 part 'app_database.g.dart';
 
@@ -155,11 +153,5 @@ class AppDatabase extends _$AppDatabase {
 }
 
 // coverage:ignore-start
-LazyDatabase _openConnection() {
-  return LazyDatabase(() async {
-    final dir = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dir.path, 'sheipe.db'));
-    return NativeDatabase.createInBackground(file);
-  });
-}
+DatabaseConnection _openConnection() => connect();
 // coverage:ignore-end

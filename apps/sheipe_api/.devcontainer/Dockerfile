@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     unzip \
     xz-utils \
-    libglib2.0-0 \
     ca-certificates \
     postgresql-client \
     tzdata \
@@ -29,25 +28,16 @@ RUN git clone --depth 1 https://github.com/rbenv/rbenv.git "${RBENV_ROOT}" \
   && rbenv global 3.3.10 \
   && rbenv rehash \
   && gem update --system --no-document \
-  && gem install bundler --no-document
+  && gem install bundler ruby-lsp --no-document \
+  && rbenv rehash
 
-# Flutter SDK (libglib2.0-0 required by Dart VM on Ubuntu)
-ENV FLUTTER_ROOT=/opt/flutter
-ENV PATH="${FLUTTER_ROOT}/bin:${PATH}"
-ENV FLUTTER_NO_ANALYTICS=true
-ENV PUB_NO_SELF_UPDATE=true
+# Starship prompt
+RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes \
+  && echo 'eval "$(starship init bash)"' >> /etc/bash.bashrc
 
-RUN git clone --depth 1 \
-      --branch 3.41.6 \
-      https://github.com/flutter/flutter.git \
-      "${FLUTTER_ROOT}" \
-  && flutter precache --no-android --no-ios --no-fuchsia --no-macos --no-windows \
-  && flutter doctor --suppress-analytics
-
-# Node.js (LTS) + Claude Code CLI
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
-  && apt-get install -y --no-install-recommends nodejs \
-  && rm -rf /var/lib/apt/lists/* \
-  && npm install -g @anthropic-ai/claude-code
+# RTK (token optimizer) and Caveman (AI agent toolkit)
+ENV PATH="/root/.local/bin:${PATH}"
+RUN curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh \
+  && curl -fsSL https://raw.githubusercontent.com/JuliusBrussee/caveman/main/install.sh | bash
 
 WORKDIR /workspace

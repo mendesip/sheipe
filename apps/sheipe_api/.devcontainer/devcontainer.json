@@ -1,35 +1,38 @@
 {
   "name": "sheipe_api",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {},
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "true",
+      "configureZshAsDefaultShell": "true"
+    }
+  },
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/workspaces/sheipe_api",
-
-  "forwardPorts": [3000, 5432],
-  "portsAttributes": {
-    "3000": { "label": "Rails", "onAutoForward": "notify" },
-    "5432": { "label": "PostgreSQL", "onAutoForward": "silent" }
-  },
-
-  "postCreateCommand": "bundle install && rails db:create db:migrate",
-
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [
+    3000,
+    5432
+  ],
   "remoteEnv": {
-    "BUNDLE_PATH": "/usr/local/bundle"
+    "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}"
   },
-
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "mounts": [
+    "type=bind,consistency=cached,source=${localEnv:HOME}/.claude,target=/root/.claude",
+    "type=bind,consistency=cached,source=${localEnv:HOME}/.claude.json,target=/root/.claude.json"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
         "Shopify.ruby-lsp",
-        "KoichiSasada.vscode-rdbg",
-        "rebornix.Ruby",
-        "misogi.ruby-rubocop"
+        "bung87.rails",
+        "hridoy.rails-snippets",
+        "anthropics.claude-code"
       ],
       "settings": {
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "Shopify.ruby-lsp",
-        "[ruby]": {
-          "editor.defaultFormatter": "Shopify.ruby-lsp"
-        }
+        "ruby.rbenvPath": "/usr/local/rbenv"
       }
     }
   }

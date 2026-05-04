@@ -32,7 +32,10 @@ class ServiceLocator {
   ServiceLocator._(); // coverage:ignore-line
 
   static Future<void> init() async {
-    const baseUrl = String.fromEnvironment('API_BASE_URL', defaultValue: 'http://localhost:3000');
+    const baseUrl = String.fromEnvironment(
+      'API_BASE_URL',
+      defaultValue: 'http://app:3000',
+    );
 
     sl.registerLazySingleton<AppDatabase>(
       () => AppDatabase(), // coverage:ignore-line
@@ -55,10 +58,7 @@ class ServiceLocator {
     );
 
     sl.registerLazySingleton<ApiClient>(
-      () => ApiClient(
-        baseUrl: baseUrl,
-        authInterceptor: sl<AuthInterceptor>(),
-      ),
+      () => ApiClient(baseUrl: baseUrl, authInterceptor: sl<AuthInterceptor>()),
     );
 
     sl.registerLazySingleton<AuthRemoteDataSource>(
